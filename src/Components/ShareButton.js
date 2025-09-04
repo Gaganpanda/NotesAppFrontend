@@ -8,7 +8,7 @@ const ShareButton = ({ shareUrl, className, style }) => {
       setMessage("No share URL found!");
       return;
     }
-    const fullUrl = `http://localhost:3000/share/${shareUrl}`;
+    const fullUrl = `https://your-project-name.up.railway.app/share/${shareUrl}`;
     navigator.clipboard.writeText(fullUrl);
     setMessage("Share link copied to clipboard!");
     setTimeout(() => setMessage(""), 3000);
