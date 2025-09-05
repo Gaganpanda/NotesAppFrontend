@@ -15,7 +15,7 @@ const DeleteUser = () => {
         e.preventDefault()
 
         let data = { password }
-        axios.post(`http://localhost:8080/users/verifyByEmail?email=${user.email}&password=${password}`, data)
+        axios.post(`https://notesapp-backend-latest.onrender.com/users/verifyByEmail?email=${user.email}&password=${password}`, data)
             .then((res) => {
                 if (res.data.statusCode === 200) {
                     alert(res.data.message)
