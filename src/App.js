@@ -33,7 +33,7 @@ function App() {
           <Route path="/editNote" element={<Protect Child={EditNote}/>} />
           <Route path="/deleteNote" />
           <Route path="/shareNote" element={<Protect Child={NotesList} />} />
-          <Route path="/share/:shareUrl" element={<SharedNoteView/>} />
+          <Route path="/share/:shareUrl" element={<SharedNoteView />} />
           </Routes>
       </Router>
       </div>
