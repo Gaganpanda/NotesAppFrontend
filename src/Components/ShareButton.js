@@ -8,7 +8,7 @@ const ShareButton = ({ shareUrl, className, style }) => {
       setMessage("No share URL found!");
       return;
     }
-    const fullUrl = `https://notes-app-frontend-mgzx.vercel.app/share/${shareUrl}`;
+    const fullUrl = `https://notesapp-backend-latest.onrender.com/share/${shareUrl}`;
     navigator.clipboard.writeText(fullUrl);
     setMessage("Share link copied to clipboard!");
     setTimeout(() => setMessage(""), 3000);
