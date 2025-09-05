@@ -25,7 +25,7 @@ const Home = () => {
     };
 
     const deleteNotes = (id) => {
-        axios.delete(`http://localhost:8080notesapp-backend-latest.onrender.com/notes/${id}`)
+        axios.delete(`http://notesapp-backend-latest.onrender.com/notes/${id}`)
             .then((res) => {
                 alert(res.data.data);
                 // Refresh notes after delete
