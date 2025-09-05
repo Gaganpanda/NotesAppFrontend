@@ -9,7 +9,7 @@ const SharedNoteView = () => {
 
   useEffect(() => {
     axios
-      .get(`https://notesapp-backend-latest.onrender.com/share/${shareUrl}`)
+      .get(`https://notes-app-frontend-mgzx.vercel.app/share/${shareUrl}`)
       .then(res => setNote(res.data.data))
       .catch(() => setError("Failed to load shared note or note does not exist."));
   }, [shareUrl]);
