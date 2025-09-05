@@ -19,7 +19,7 @@ const UpdateUser = () => {
 
     if (id && name && phone && email && password) {
       axios
-        .put("http://localhost:8080/users", updatedUser)
+        .put("https://notesapp-backend-latest.onrender.com/users", updatedUser)
         .then((res) => {
           alert(res.data.message);
           localStorage.setItem("user", JSON.stringify(res.data.data));

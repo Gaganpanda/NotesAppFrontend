@@ -22,7 +22,7 @@ const SignUp = () => {
 
     if (data.name && data.phone && data.email && data.password) {
       axios
-        .post("http://notesapp-backend-latest.onrender.com/users", data)
+        .post("https://notesapp-backend-latest.onrender.com/users", data)
         .then((res) => {
           alert(res.data.message);
           navigate("/");

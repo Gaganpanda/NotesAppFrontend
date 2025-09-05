@@ -8,7 +8,7 @@ const NotesList = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
-    axios.get(`http://notesapp-backend-latest.onrender.com/notes/byUser-ID/${user.id}`)
+    axios.get(`https://notesapp-backend-latest.onrender.com/notes/byUser-ID/${user.id}`)
       .then(res => setNotes(res.data.data))
       .catch(console.error);
   }, []);

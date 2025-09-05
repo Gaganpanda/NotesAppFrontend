@@ -8,7 +8,7 @@ const ShareButton = ({ shareUrl, className, style }) => {
       setMessage("No share URL found!");
       return;
     }
-    const fullUrl = `http://notesapp-backend-latest.onrender.com/share/${shareUrl}`;
+    const fullUrl = `https://notesapp-backend-latest.onrender.com/share/${shareUrl}`;
     navigator.clipboard.writeText(fullUrl);
     setMessage("Share link copied to clipboard!");
     setTimeout(() => setMessage(""), 3000);

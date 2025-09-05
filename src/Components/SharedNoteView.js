@@ -9,7 +9,7 @@ const SharedNoteView = () => {
 
   useEffect(() => {
     axios
-      .get(`http://notesapp-backend-latest.onrender.com/notes/share/${shareUrl}`)
+      .get(`https://notesapp-backend-latest.onrender.com/notes/share/${shareUrl}`)
       .then((res) => {
         setNote(res.data.data);
       })
