@@ -9,7 +9,7 @@ const SharedNoteView = () => {
 
   useEffect(() => {
     axios
-      .get(`https://notesapp-backend-latest.onrender.com/notes/share/${shareUrl}`)
+      .get(`https://notesapp-backend-latest.onrender.com/share/${shareUrl}`)
       .then((res) => {
         setNote(res.data.data);
       })
@@ -26,6 +26,7 @@ const SharedNoteView = () => {
     return <div style={{ padding: "20px" }}>Loading shared note...</div>;
   }
 
+  // Only show title and content
   return (
     <div
       style={{
@@ -38,7 +39,7 @@ const SharedNoteView = () => {
     >
       <h2>{note.title}</h2>
       <p style={{ whiteSpace: "pre-wrap", fontSize: "16px", lineHeight: "1.5" }}>
-        {note.content} {/* Changed here from note.note to note.content */}
+        {note.content}
       </p>
     </div>
   );
