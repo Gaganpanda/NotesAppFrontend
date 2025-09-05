@@ -39,7 +39,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchData = () => {
-            axios.get(`httpss://notesapp-backend-latest.onrender.com/notes/byUser-ID/${user.id}`)
+            axios.get(`https://notesapp-backend-latest.onrender.com/notes/byUser-ID/${user.id}`)
                 .then((res) => {
                     setNotes(res.data.data);
                     setSearch(res.data.data);

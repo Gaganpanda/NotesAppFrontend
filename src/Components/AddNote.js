@@ -14,7 +14,7 @@ const AddNote = () => {
         let user = JSON.parse(localStorage.getItem("user"));
         // Use 'content' instead of 'note' for backend compatibility
         let data = { title, content: note };
-        axios.post(`https://notesapp-backend-latest.onrender.com/notes/${user.id}`, data)
+        axios.post(`http://localhost:8080/notes/${user.id}`, data)
             .then((res) => {
                 alert("Note added with ID: " + res.data.data.id);
                 navigate('/home');
