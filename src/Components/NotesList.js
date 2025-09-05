@@ -20,7 +20,7 @@ const NotesList = () => {
       {notes.map(note => (
         <div key={note.id} style={{ marginBottom: "20px" }}>
           <h3>{note.title}</h3>
-          <p>{note.note}</p>
+          <p>{note.content}</p> {/* <-- FIX: use 'content' */}
           <ShareButton shareUrl={note.shareUrl} />
         </div>
       ))}

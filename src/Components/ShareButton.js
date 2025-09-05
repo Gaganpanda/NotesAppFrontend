@@ -16,14 +16,12 @@ const ShareButton = ({ shareUrl, className, style }) => {
 
   return (
     <div>
-      <button
-        className={className}
-        style={style}
-        onClick={copyToClipboard}
-      >
+      <button className={className} style={style} onClick={copyToClipboard}>
         Share
       </button>
-      {message && <p style={{ color: "green", fontSize: "small" }}>{message}</p>}
+      {message && (
+        <p style={{ color: "green", fontSize: "small" }}>{message}</p>
+      )}
     </div>
   );
 };

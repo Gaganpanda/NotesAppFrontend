@@ -27,9 +27,19 @@ const SharedNoteView = () => {
   }
 
   return (
-    <div style={{ maxWidth: "600px", margin: "40px auto", padding: "20px", background: "#f0f0f0", borderRadius: "8px" }}>
+    <div
+      style={{
+        maxWidth: "600px",
+        margin: "40px auto",
+        padding: "20px",
+        background: "#f0f0f0",
+        borderRadius: "8px",
+      }}
+    >
       <h2>{note.title}</h2>
-      <p style={{ whiteSpace: "pre-wrap", fontSize: "16px", lineHeight: "1.5" }}>{note.note}</p>
+      <p style={{ whiteSpace: "pre-wrap", fontSize: "16px", lineHeight: "1.5" }}>
+        {note.content} {/* Changed here from note.note to note.content */}
+      </p>
     </div>
   );
 };

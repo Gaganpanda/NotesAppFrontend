@@ -6,101 +6,124 @@ import axios from "axios";
 import { Table } from "reactstrap";
 import ShareButton from "./ShareButton";
 
-
 const Home = () => {
-    let [notes, setNotes] = useState([])
-    let [search, setSearch] = useState([])
+    const [notes, setNotes] = useState([]);
+    const [search, setSearch] = useState([]);
 
-    let user = JSON.parse(localStorage.getItem("user"))
+    const user = JSON.parse(localStorage.getItem("user"));
+    const navigate = useNavigate();
 
-    let navigate = useNavigate()
-    let editNotes=((id)=>{
+    const editNotes = (id) => {
         axios.get(`http://localhost:8080/notes/${id}`)
-        .then((res)=>{
-            localStorage.setItem("note", JSON.stringify(res.data.data))
-            navigate("/editNote")
-        })
-        .catch(()=>{
-            alert("Something went wrong")
-        })
-    })
+            .then((res) => {
+                localStorage.setItem("note", JSON.stringify(res.data.data));
+                navigate("/editNote");
+            })
+            .catch(() => {
+                alert("Something went wrong");
+            });
+    };
 
-    let deleteNotes=((id)=>{
+    const deleteNotes = (id) => {
         axios.delete(`http://localhost:8080/notes/${id}`)
-        .then((res)=>{
-            alert(res.data.data)
-        })
-        .catch(()=>{
-            alert("Cannot Delete Product")
-        })
-    })
+            .then((res) => {
+                alert(res.data.data);
+                // Refresh notes after delete
+                setNotes(notes.filter(n => n.id !== id));
+                setSearch(search.filter(n => n.id !== id));
+            })
+            .catch(() => {
+                alert("Cannot Delete Note");
+            });
+    };
 
-    useEffect(()=>{
-        let fetchData=()=>{
+    useEffect(() => {
+        const fetchData = () => {
             axios.get(`http://localhost:8080/notes/byUser-ID/${user.id}`)
-            .then((res)=>{
-                setNotes(res.data.data)
-                setSearch(res.data.data)
-            })
-            .catch(()=>{
-                alert("Bad Request")
-            })
-            
-        }
-        fetchData()
-    },[user.id])
+                .then((res) => {
+                    setNotes(res.data.data);
+                    setSearch(res.data.data);
+                })
+                .catch(() => {
+                    alert("Bad Request");
+                });
+        };
+        fetchData();
+    }, [user.id]);
 
-    let searchNotes=(e)=>{
-        setSearch(notes.filter((x)=>x.title.toLowerCase().includes(e.target.value)))
-      }
+    const searchNotes = (e) => {
+        setSearch(
+            notes.filter((x) =>
+                x.title.toLowerCase().includes(e.target.value.toLowerCase())
+            )
+        );
+    };
 
     return (
         <div>
             <Navbar />
-            <input type='text' placeholder='Search Note By Title' onChange={searchNotes}/>
+            <input
+                type="text"
+                placeholder="Search Note By Title"
+                onChange={searchNotes}
+            />
             <div>
-            <Table responsive size="sm" dark cellPadding={20} >
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Note</th>
-                    <th>Date</th>
-                    <th>EDIT</th>
-                    <th>DELETE</th> 
-                    <th>SHARE</th>
-                </tr>
-            </thead>
-                {
-                    search.map((p)=>{
-                        return(
-                            <tbody>
-                            <tr>
+                <Table responsive size="sm" dark cellPadding={20}>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Note</th>
+                            <th>Date</th>
+                            <th>EDIT</th>
+                            <th>DELETE</th>
+                            <th>SHARE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {search.map((p) => (
+                            <tr key={p.id}>
                                 <td>{p.id}</td>
                                 <td>{p.title}</td>
-                                <td>{p.note}</td>
+                                <td>{p.content}</td>
                                 <td>{p.date}</td>
-                                <td><button onClick={()=>{editNotes(p.id)}} className={style.btn}>EDIT</button></td>
-                                <td><button onClick={()=>{deleteNotes(p.id)}} className={style.btn} style={{backgroundColor:'crimson', width:70}}>DELETE</button></td>
                                 <td>
-                                {/* Share button added here */}
-                                <ShareButton
-                                shareUrl={p.shareUrl}
-                                className={style.btn}
-                                style={{ backgroundColor: 'purple', color: 'white', width: 70 }}
-                                />
-
-
-
+                                    <button
+                                        onClick={() => editNotes(p.id)}
+                                        className={style.btn}
+                                    >
+                                        EDIT
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        onClick={() => deleteNotes(p.id)}
+                                        className={style.btn}
+                                        style={{
+                                            backgroundColor: "crimson",
+                                            width: 70,
+                                        }}
+                                    >
+                                        DELETE
+                                    </button>
+                                </td>
+                                <td>
+                                    <ShareButton
+                                        shareUrl={p.shareUrl}
+                                        className={style.btn}
+                                        style={{
+                                            backgroundColor: "purple",
+                                            color: "white",
+                                            width: 70,
+                                        }}
+                                    />
                                 </td>
                             </tr>
-                            </tbody>
-                        )
-                    })
-                }
-            </Table>
+                        ))}
+                    </tbody>
+                </Table>
+            </div>
         </div>
-        </div>
-    )
-}
-export default Home
+    );
+};
+export default Home;
