@@ -16,7 +16,7 @@ const EditNote = () => {
         let user = JSON.parse(localStorage.getItem("user"))
         e.preventDefault()
         let data = { id, title, note }
-        axios.put(`http://localhost:8080/notes/${user.id}`, data)
+        axios.put(`https://notesapp-backend-latest.onrender.com/notes/${user.id}`, data)
             .then((res) => {
                 setId(user.id)
                 alert("Note Updated with ID: "+res.data.data.id)

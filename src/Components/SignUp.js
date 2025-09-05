@@ -22,7 +22,7 @@ const SignUp = () => {
 
     if (data.name && data.phone && data.email && data.password) {
       axios
-        .post("http://localhost:8080/users", data)
+        .post("http://notesapp-backend-latest.onrender.com/users", data)
         .then((res) => {
           alert(res.data.message);
           navigate("/");

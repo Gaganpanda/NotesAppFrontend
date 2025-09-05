@@ -15,11 +15,11 @@ const DeleteUser = () => {
         e.preventDefault()
 
         let data = { password }
-        axios.post(`http://localhost:8080/users/verifyByEmail?email=${user.email}&password=${password}`, data)
+        axios.post(`https://notesapp-backend-latest.onrender.com/users/verifyByEmail?email=${user.email}&password=${password}`, data)
             .then((res) => {
                 if (res.data.statusCode === 200) {
                     alert(res.data.message)
-                    axios.delete(`http://localhost:8080/users/${user.id}`, id)
+                    axios.delete(`http://notesapp-backend-latest.onrender.com/users/${user.id}`, id)
                         .then((res) => {
                             if (res.data.statusCode === 200) {
                                 alert(res.data.message)

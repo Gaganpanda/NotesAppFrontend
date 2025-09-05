@@ -14,7 +14,7 @@ const SignIn = () => {
     let data = { email, password };
     axios
       .post(
-        `http://localhost:8080/users/verifyByEmail?email=${email}&password=${password}`,
+        `http://notesapp-backend-latest.onrender.com/users/verifyByEmail?email=${email}&password=${password}`,
         data
       )
       .then((res) => {

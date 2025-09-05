@@ -14,7 +14,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     const editNotes = (id) => {
-        axios.get(`http://localhost:8080/notes/${id}`)
+        axios.get(`https://notesapp-backend-latest.onrender.com/notes/${id}`)
             .then((res) => {
                 localStorage.setItem("note", JSON.stringify(res.data.data));
                 navigate("/editNote");
@@ -25,7 +25,7 @@ const Home = () => {
     };
 
     const deleteNotes = (id) => {
-        axios.delete(`http://localhost:8080/notes/${id}`)
+        axios.delete(`http://localhost:8080notesapp-backend-latest.onrender.com/notes/${id}`)
             .then((res) => {
                 alert(res.data.data);
                 // Refresh notes after delete
@@ -39,7 +39,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchData = () => {
-            axios.get(`http://localhost:8080/notes/byUser-ID/${user.id}`)
+            axios.get(`http://notesapp-backend-latest.onrender.com/notes/byUser-ID/${user.id}`)
                 .then((res) => {
                     setNotes(res.data.data);
                     setSearch(res.data.data);
